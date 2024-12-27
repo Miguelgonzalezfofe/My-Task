@@ -1,0 +1,76 @@
+#lista-proyectos,
+#lista-tareas {
+    max-height: 390px;
+    overflow-y: auto;
+}
+
+.list-group-item:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.card {
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+}
+
+.notas-relacionadas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.notas-relacionadas span {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#titulo-tarea {
+    width: 100%;
+    background-color: transparent
+}
+
+#contenido-tarea {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    resize: none;
+}
+
+.container-user{
+    margin-top: 70px;
+}
+
+/* style for the Testimonies */
+
+.card-img-top-custom {
+    position: absolute;
+    top: -50px;
+    /* Desplaza hacia arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid white;
+    /* Borde para destacar la imagen */
+}
+
+/* Estilo adicional para la card */
+.custom-card {
+    margin-top: 70px;
+    /* Espacio para la imagen flotante */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+    overflow: visible;
+    /* Recorta el contenido que sobresale */
+}
+
+/* style for btn project */
+.btn-edit, .btn-delete{
+    padding: 0 4px;
+}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- icon bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../index.css">
+    <script type="module" src="../../main.js"></script>
+    <title>My Tasks</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark fixed-top border-body" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">My Tasks</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-end" id="navbarNav">
+                    <ul class="navbar-nav text-center ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="./dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item logged-Out">
+                            <a class="nav-link" href="#" data-bs-toggle="modal"
+                                data-bs-target="#SigninModal">SignIn</a>
+                        </li>
+                        <li class="nav-item logged-Out">
+                            <a class="nav-link" href="#" data-bs-toggle="modal"
+                                data-bs-target="#SignupModal">SignUp</a>
+                        </li>
+                        <li class="nav-item  logged-In">
+                            <a class="nav-link" href="#" id="btn-logOut">logOut</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link logged-In" href="#">
+
+                                <p class="nombreusuario">
+                                    <span class="nombre-usuario"></span>
+                                </p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="modal fade" id="SignupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">SignUp</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="singup-form">
+                        <label for="singup-name">Name</label>
+                        <input type="text" class="form-control mb-3" id="signup-name" placeholder="Name"
+                            autocomplete="name" required>
+                        <label for="signup-email">Email</label>
+                        <input type="email" class="form-control mb-3" id="signup-email" placeholder="Email"
+                            autocomplete="email" required>
+                        <label for="signup-password">password</label>
+                        <input type="password" class="form-control mb-3" id="signup-password" placeholder="******"
+                            autocomplete="new-password" required>
+                    </form>
+                    <button type="button" id="btn-signup-form" class="btn btn-primary w-100 mb-3">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--SignIn Modal -->
+    <div class="modal fade" id="SigninModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">SignIn</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="signin-form">
+                        <label for="signin-email">Email</label>
+                        <input type="email" class="form-control mb-3" id="signin-email" placeholder="Email"
+                            autocomplete="email" required>
+                        <label for="signin-password">password</label>
+                        <input type="password" class="form-control mb-3" id="signin-password" placeholder="******"
+                            autocomplete="new-password" required>
+                    </form>
+                    <button type="button" id="btn-signin-form" class="btn btn-primary w-100 mb-3">Login</button>
+                    <p class="text-center"><a href="">Recover password</a></p>
+                </div>
+                <div class="container d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-primary mb-1" id="btn_google">Google</button>
+                    <button type="button" class="btn btn-primary mb-1">Facebook</button>
+                    <button type="button" class="btn btn-primary mb-1">GitHub</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid container-user">
+        <!-- Nombre del usuario -->
+        <div class="row mb-2">
+            <div class="col-12 text-center">
+                <!-- cambiar el nombre de usuario cando ingresa -->
+                <h5 class="h4">Bienvenido, <span class="nombre-usuario">Usuario</span></h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Proyectos -->
+            <div class="col-md-3">
+                <h4 class="mb-3">Proyectos</h4>
+                <input type="text" class="form-control mb-3" placeholder="Buscar proyecto..." id="filtro-proyectos">
+                <!-- boton para agregar nuevo proyecto -->
+                <button type="button" id="btn-new-project" class="btn btn-primary mb-2 " data-bs-toggle="modal"
+                    data-bs-target="#modalNewProject">
+                    <i class="bi bi-plus-lg"></i> new project
+                </button>
+                <ul class="list-group" id="lista-proyectos">
+
+                </ul>
+            </div>
+            <!-- modal para agregar nuevo proyecto -->
+            <div class="modal fade" id="modalNewProject" tabindex="-1" aria-labelledby="newProject"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="newProject">New Project</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="newProjectForm">
+                                <label for="proyecto-nombre">Name</label>
+                                <input type="text" class="form-control mb-3" id="nameProject" placeholder="Name"
+                                    required>
+                            </form>
+                            <button type="button" id="btnCreateNewProject" class="btn btn-primary w-100 mb-3">Create
+                                Proyecto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- edit name project -->
+            <div class="modal fade" id="modalNewnameProject" tabindex="-1" aria-labelledby="newNameProject"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="newNameProject">New name project</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="newNameProjectForm">
+                                <label for="proyecto-nombre">Name</label>
+                                <input type="text" class="form-control mb-3" id="newNameProject" placeholder="Nombre"
+                                    required>
+                            </form>
+                            <button type="button" id="btnEditNewProject" class="btn btn-primary w-100 mb-3">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- delete Project modal -->
+            <div class="modal fade" id="modalDeleteProject" tabindex="-1" aria-labelledby="deleteProject"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteProject">Delete Project</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="deleteProjectForm" class="text-center">
+                                <label for="proyecto-nombre" class="fs-5">Are you sure you want to delete this project?</label>
+                            </form>
+                            <button type="button" id="btnDeleteProject" class="btn btn-secondary w-100 mb-3 mt-3">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Tareas -->
+            <div class="col-md-3">
+                <h4 class="mb-3">Tareas</h4>
+                <input type="text" class="form-control mb-3" placeholder="Buscar tarea..." id="filtro-tareas">
+                <!-- boton para agregar nueva tarea -->
+                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modal-tarea">
+                    <i class="bi bi-plus-lg"></i> new task
+                </button>
+                <ul class="list-group" id="lista-tareas">
+
+                </ul>
+            </div>
+            <!-- modal para agregar nueva tarea -->
+            <div class="modal fade" id="modal-tarea" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="form-tarea">
+                                <label for="tarea-nombre">Nombre</label>
+                                <input type="text" class="form-control mb-3" id="tarea-nombre" placeholder="Nombre"
+                                    required>
+                                <label for="tarea-descripcion">Contenido</label>
+                                <textarea class="form-control mb-3" id="tarea-descripcion" rows="3"
+                                    placeholder="Descripción"></textarea>
+                                <label for="tarea-prioridad">Prioridad</label>
+                                <select class="form-select mb-3" id="tarea-prioridad">
+                                    <option value="0">Baja</option>
+                                    <option value="1">Media</option>
+                                    <option value="2">Alta</option>
+                                </select>
+                                <label for="tarea-proyecto">Proyecto</label>
+                                <select class="form-select mb-3" id="tarea-proyecto">
+
+                                </select>
+                            </form>
+                            <button type="button" id="btn-tarea-form" class="btn btn-primary w-100 mb-3">Crear
+                                Tarea</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notas -->
+            <div class="col-md-6">
+                <h4 class="mb-3">Detalles de Notas</h4>
+                <div class="card" id="card">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</body>
+
+</html>
